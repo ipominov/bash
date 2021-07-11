@@ -1,11 +1,11 @@
 #!/bin/bash
 
-osos="$(cat /etc/os-release | grep "ID" | head -1 | awk -F '"' '{print $2}')"
+os_distribution="$(cat /etc/os-release | grep "ID" | head -1 | awk -F '"' '{print $2}')"
 
-if [[ "$osos" == "centos" ]]; then
+if [[ "$os_distribution" == "centos" ]]; then
   yum install -y epel-release
   yum update -y
   yum install -y git readline-devel openssl-devel make gcc
-elif [[ "$osos" != "centos" ]]; then
+elif [[ "$os_distribution" != "centos" ]]; then
   apt install -y git make gcc
 fi
