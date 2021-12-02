@@ -1,5 +1,8 @@
 #!/bin/bash
 
+new_db_name=cr42035_in
+new_db_password=edgbku34h89gBh4
+
 echo "Укажи, откуда копировать (путь до каталога без слеша в конце)"
 read srcdir
 
@@ -25,9 +28,6 @@ read srcdir
     echo "Файла конфигурации Wordpress нет";
 
   fi
-
-new_db_name=cr42035_in
-new_db_password=edgbku34h89gBh4
 
 mysqldump -u"$src_db_user" "$src_db_name" -p"$src_db_password" --no-tablespaces > "$src_db_name".sql
 
