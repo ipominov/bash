@@ -15,7 +15,7 @@ read srcdir
 
 [ -f wp-config.php ]
 
-  if [[ ! $? -eq 0 ]]; then
+  if [[ $? -eq 0 ]]; then
 
     src_db_name="$(cat wp-config.php | grep "DB_NAME" | awk -F "'" '{print $4}')"
     src_db_user="$(cat wp-config.php | grep "DB_USER" | awk -F "'" '{print $4}')"
@@ -25,3 +25,5 @@ read srcdir
     echo "Файла конфигурации Wordpress нет";
 
   fi
+
+mysqldump -u"$src_db_user" "$src_db_name" -p"$src_db_password" --no-tablespaces > "$src_db_name".sql
