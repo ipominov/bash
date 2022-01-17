@@ -1,7 +1,7 @@
 #!/bin/bash
 
 new_db_name=cr42035_in
-new_db_password=edgbku34h89gBh4
+new_db_password=edgbku34h89
 
 echo "Укажи, откуда копировать (путь до каталога без слеша в конце)"
 read srcdir
