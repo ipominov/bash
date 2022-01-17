@@ -1,10 +1,16 @@
 #!/bin/bash
 
+# Скрипт для Timemweb, делает копию сайта на Wordpress в другом каталоге
+# Запускать в том каталоге, КУДА нужно сделать копию
+
+# Здесь указываем название и пароль НОВОЙ базы (предварительно нужно создать ее)
 new_db_name=cr42035_in
 new_db_password=edgbku34h89
 
 echo "Укажи, откуда копировать (путь до каталога без слеша в конце)"
 read srcdir
+
+# Проверяем существование отдающего каталога, копируем файлы
 
 [ -d $srcdir ]
 
@@ -15,6 +21,8 @@ read srcdir
     elif [[ ! $? -eq 0 ]]; then
       echo "Каталог не существует";
   fi
+
+# Проверяем наличие в файлах конфига Wordpress, выдергиваем реквизиты базы
 
 [ -f wp-config.php ]
 
@@ -29,6 +37,7 @@ read srcdir
 
   fi
 
-mysqldump -u"$src_db_user" "$src_db_name" -p"$src_db_password" --no-tablespaces > "$src_db_name".sql
+# Делаем дамп старой базы, импортируем его в новую
 
+mysqldump -u"$src_db_user" "$src_db_name" -p"$src_db_password" --no-tablespaces > "$src_db_name".sql
 mysql -u"$new_db_name" "$new_db_name" -p"$new_db_password" < "$src_db_name".sql
