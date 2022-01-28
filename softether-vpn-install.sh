@@ -9,11 +9,15 @@ distrib_version="$(cat /etc/os-release | grep "VERSION_ID" | head -1 | awk -F '"
 
 # Устанавливаем пакеты в зависимости от дистирибутива
 if [[ "$os_distrib" == "centos" ]] && [[ "$distrib_version" == "7" ]]; then
+  
   yum install -y epel-release && yum update -y
   yum install -y git readline-devel openssl-devel make gcc
-elif [[ "$os_distrib" == "centos" ]] && [[ "$distrib_version" == "8" ]]; then
-  dnf update -y
-  dnf install -y git readline-devel openssl-devel make gcc
+
+  elif [[ "$os_distrib" == "centos" ]] && [[ "$distrib_version" == "8" ]]; then
+    
+    dnf update -y
+    dnf install -y git readline-devel openssl-devel make gcc
+
 fi
 
 if [[ "$os_distrib" == "ubuntu" ]]; then
