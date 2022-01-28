@@ -15,6 +15,7 @@ read srcdir
 [ -d $srcdir ]
 
   if [[ $? -eq 0 ]]; then 
+    
     shopt -s dotglob
     cp -rp $srcdir/* ./
 
