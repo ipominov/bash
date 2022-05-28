@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#comment
 swapoff -a
 
 systemctl disable ufw && systemctl stop ufw
