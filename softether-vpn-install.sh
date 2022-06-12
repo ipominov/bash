@@ -5,15 +5,12 @@
 # **********************************************************
 
 get_distr () {
-
     if [ -r /etc/os-release ]; then
       source /etc/os-release && distr="$ID"
       else 
         echo -en "\033[1;31m\n Версия дистрибутива не определена, завершаюсь \033[0m\n"
       exit 1
     fi
-
-    
 
     if [[ $distr = "fedora" || $distr = "centos" || $distr = "ubuntu" || $distr = "debian" ]]; then
       distr_version="$VERSION_ID"
